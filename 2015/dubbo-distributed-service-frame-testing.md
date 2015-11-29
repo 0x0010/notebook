@@ -119,4 +119,26 @@ Hello 10971, response form provider: 192.168.37.1:20880
 Hello 10971, response form provider: 192.168.37.1:20881
 ````
 
-这就是我们想要的结果。
+第二次测试。刚开始保留两个服务提供者，再客户端调用过程中，关闭一个服务提供者20881，日志如下：
+````
+Hello 10971, response form provider: 192.168.37.1:20880
+Hello 10971, response form provider: 192.168.37.1:20881
+Hello 10971, response form provider: 192.168.37.1:20880
+Hello 10971, response form provider: 192.168.37.1:20881
+Hello 10971, response form provider: 192.168.37.1:20880
+Hello 10971, response form provider: 192.168.37.1:20881
+Hello 10971, response form provider: 192.168.37.1:20880
+Hello 10971, response form provider: 192.168.37.1:20880
+Hello 10971, response form provider: 192.168.37.1:20880
+Hello 10971, response form provider: 192.168.37.1:20880
+Hello 10971, response form provider: 192.168.37.1:20880
+Hello 10971, response form provider: 192.168.37.1:20880
+Hello 10971, response form provider: 192.168.37.1:20880
+Hello 10971, response form provider: 192.168.37.1:20880
+Hello 10971, response form provider: 192.168.37.1:20880
+Hello 10971, response form provider: 192.168.37.1:20880
+Hello 10971, response form provider: 192.168.37.1:20880
+Hello 10971, response form provider: 192.168.37.1:20880
+Hello 10971, response form provider: 192.168.37.1:20880
+Hello 10971, response form provider: 192.168.37.1:20880
+````
