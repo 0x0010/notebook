@@ -41,6 +41,20 @@ dubbo.service.loadbalance=roundrobin
 #dubbo.log4j.file=logs/dubbo-demo-consumer.log
 #dubbo.log4j.level=WARN
 ````
+先启动一个服务提供者，执行com.alibaba.dubbo.container.Main即可。看到日志，提示服务注册成功。
+````
+// 部分日志
+[30/11/15 12:24:41:041 CST] main  INFO zookeeper.ZooKeeper: Initiating client connection, connectString=192.168.37.128:2181 sessionTimeout=30000 watcher=org.I0Itec.zkclient.ZkClient@363a52f
+[30/11/15 12:24:41:041 CST] main-SendThread()  INFO zookeeper.ClientCnxn: Opening socket connection to server /192.168.37.128:2181
+[30/11/15 12:24:41:041 CST] main-SendThread(192.168.37.128:2181)  INFO zookeeper.ClientCnxn: Socket connection established to 192.168.37.128/192.168.37.128:2181, initiating session
+[30/11/15 12:24:41:041 CST] main-SendThread(192.168.37.128:2181)  INFO zookeeper.ClientCnxn: Session establishment complete on server 192.168.37.128/192.168.37.128:2181, sessionid = 0x1515349c035000d, negotiated timeout = 30000
+[30/11/15 12:24:41:041 CST] main-EventThread  INFO zkclient.ZkClient: zookeeper state changed (SyncConnected)
+[30/11/15 12:24:41:041 CST] main  INFO zookeeper.ZookeeperRegistry:  [DUBBO] Register: dubbo://192.168.37.1:20880/com.jianzhi.demo.CustomerService?anyhost=true&application=serve-provider&dubbo=2.4.10&interface=com.jianzhi.demo.CustomerService&loadbalance=roundrobin&methods=getCustomerById&owner=william&pid=1325&side=provider&timestamp=1448814280809, dubbo version: 2.4.10, current host: 127.0.0.1
+[30/11/15 12:24:41:041 CST] main  INFO zookeeper.ZookeeperRegistry:  [DUBBO] Subscribe: provider://192.168.37.1:20880/com.jianzhi.demo.CustomerService?anyhost=true&application=serve-provider&category=configurators&check=false&dubbo=2.4.10&interface=com.jianzhi.demo.CustomerService&loadbalance=roundrobin&methods=getCustomerById&owner=william&pid=1325&side=provider&timestamp=1448814280809, dubbo version: 2.4.10, current host: 127.0.0.1
+[30/11/15 12:24:41:041 CST] main  INFO zookeeper.ZookeeperRegistry:  [DUBBO] Notify urls for subscribe url provider://192.168.37.1:20880/com.jianzhi.demo.CustomerService?anyhost=true&application=serve-provider&category=configurators&check=false&dubbo=2.4.10&interface=com.jianzhi.demo.CustomerService&loadbalance=roundrobin&methods=getCustomerById&owner=william&pid=1325&side=provider&timestamp=1448814280809, urls: [empty://192.168.37.1:20880/com.jianzhi.demo.CustomerService?anyhost=true&application=serve-provider&category=configurators&check=false&dubbo=2.4.10&interface=com.jianzhi.demo.CustomerService&loadbalance=roundrobin&methods=getCustomerById&owner=william&pid=1325&side=provider&timestamp=1448814280809], dubbo version: 2.4.10, current host: 127.0.0.1
+[30/11/15 12:24:41:041 CST] main  INFO container.Main:  [DUBBO] Dubbo SpringContainer started!, dubbo version: 2.4.10, current host: 127.0.0.1
+[2015-11-30 00:24:41] Dubbo service server started!
+````
 
 
 
