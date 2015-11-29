@@ -9,6 +9,7 @@ DUBBO是一个分布式服务框架，致力于提供高性能和透明化的RPC
 ![理想的系统技术架构图](http://7xlj4k.com1.z0.glb.clouddn.com/system-arch-2.png "理想的系统架构图")
 * Service Provider是服务的提供方，可以提供完整的服务。也就是说Service-Provider-Group中的每个Provider都可以提供完整的简职服务。
 * Service Consumer不需要知道服务提供方的具体实现和部署形式，采用RPC远程调用服务。部署时，只需要将服务提供方的接口清单提供给调用方即可。
+
 ## Dubbo的集成与测试
 ###搭建Zookeeper（服务注册中心）
 ###部署两个服务进程（Service-Provider-Instance）
