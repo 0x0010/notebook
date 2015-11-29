@@ -56,9 +56,52 @@ dubbo.service.loadbalance=roundrobin
 [2015-11-30 00:24:41] Dubbo service server started!
 ````
 
-
-
-###清理Service Consumer中本地化的服务实现
 ###调用测试
+消费端配置
+````
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        ">
+
+    <!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
+    <dubbo:application name="serve_consumer" />
+
+    <!-- 使用zookeeper注册中心暴露服务地址 -->
+     <!--<dubbo:registry address="multicast://224.5.6.7:1234" />-->
+    <dubbo:registry address="zookeeper://192.168.37.128:2181" />
+    <!--<dubbo:registry -->
+
+    <!-- 生成远程服务代理，可以像使用本地bean一样使用demoService -->
+    <dubbo:reference id="customerService" interface="com.jianzhi.demo.CustomerService" />
+
+</beans>
+````
+写一个简单的程序测试
+````
+    public static void main(String[] args) throws Exception{
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("application.xml");
+        context.start();
+        CustomerService customerService = (CustomerService)context.getBean("customerService");
+        String remoteReturn = customerService.getCustomerById(10971L);
+        System.out.println(remoteReturn);
+    }
+````
+
+客户端日志
+````
+Hello 10971, response form provider: 192.168.37.1:20880
+````
+
+服务端日志
+````
+[00:28:02] Hello 10971, request from consumer: /192.168.37.1:54765
+[30/11/15 12:28:02:002 CST] New I/O server worker #1-1  WARN transport.AbstractServer:  [DUBBO] All clients has discontected from /192.168.37.1:20880. You can graceful shutdown now., dubbo version: 2.4.10, current host: 127.0.0.1
+[30/11/15 12:28:02:002 CST] DubboServerHandler-192.168.37.1:20880-thread-3  INFO dubbo.DubboProtocol:  [DUBBO] disconected from /192.168.37.1:54765,url:dubbo://192.168.37.1:20880/com.jianzhi.demo.CustomerService?anyhost=true&application=serve-provider&channel.readonly.sent=true&codec=dubbo&dubbo=2.4.10&heartbeat=60000&interface=com.jianzhi.demo.CustomerService&loadbalance=roundrobin&methods=getCustomerById&owner=william&pid=1325&side=provider&timestamp=1448814280809, dubbo version: 2.4.10, current host: 127.0.0.1
+````
 
 Continued...
