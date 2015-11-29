@@ -36,7 +36,7 @@ dubbo.registry.address=zookeeper://192.168.37.128:2181
 #dubbo.registry.address=dubbo://127.0.0.1:9090
 #dubbo.monitor.protocol=registry
 dubbo.protocol.name=dubbo
-dubbo.protocol.port=20880
+dubbo.protocol.port=20880/20881
 dubbo.service.loadbalance=roundrobin
 #dubbo.log4j.file=logs/dubbo-demo-consumer.log
 #dubbo.log4j.level=WARN
@@ -55,9 +55,9 @@ dubbo.service.loadbalance=roundrobin
 [30/11/15 12:24:41:041 CST] main  INFO container.Main:  [DUBBO] Dubbo SpringContainer started!, dubbo version: 2.4.10, current host: 127.0.0.1
 [2015-11-30 00:24:41] Dubbo service server started!
 ````
-
+然后再启动另外一个服务提供者。 最终会有两个不同断口（20880和20881）的服务注册到zookeeper。
 ###调用测试
-消费端配置
+消费端配置，消费端不需要配置dubbo的信息，只需指定zookeeper地址即可。
 ````
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -86,22 +86,37 @@ dubbo.service.loadbalance=roundrobin
     public static void main(String[] args) throws Exception{
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("application.xml");
         context.start();
-        CustomerService customerService = (CustomerService)context.getBean("customerService");
-        String remoteReturn = customerService.getCustomerById(10971L);
-        System.out.println(remoteReturn);
+        for(int i=0; i< 20; i++) {
+            CustomerService customerService = (CustomerService)context.getBean("customerService");
+            String remoteReturn = customerService.getCustomerById(10971L);
+            System.out.println(remoteReturn);
+            Thread.sleep(1000);
+        }
     }
 ````
 
 客户端日志
 ````
 Hello 10971, response form provider: 192.168.37.1:20880
+Hello 10971, response form provider: 192.168.37.1:20881
+Hello 10971, response form provider: 192.168.37.1:20880
+Hello 10971, response form provider: 192.168.37.1:20881
+Hello 10971, response form provider: 192.168.37.1:20880
+Hello 10971, response form provider: 192.168.37.1:20881
+Hello 10971, response form provider: 192.168.37.1:20880
+Hello 10971, response form provider: 192.168.37.1:20881
+Hello 10971, response form provider: 192.168.37.1:20880
+Hello 10971, response form provider: 192.168.37.1:20881
+Hello 10971, response form provider: 192.168.37.1:20880
+Hello 10971, response form provider: 192.168.37.1:20881
+Hello 10971, response form provider: 192.168.37.1:20880
+Hello 10971, response form provider: 192.168.37.1:20881
+Hello 10971, response form provider: 192.168.37.1:20880
+Hello 10971, response form provider: 192.168.37.1:20881
+Hello 10971, response form provider: 192.168.37.1:20880
+Hello 10971, response form provider: 192.168.37.1:20881
+Hello 10971, response form provider: 192.168.37.1:20880
+Hello 10971, response form provider: 192.168.37.1:20881
 ````
 
-服务端日志
-````
-[00:28:02] Hello 10971, request from consumer: /192.168.37.1:54765
-[30/11/15 12:28:02:002 CST] New I/O server worker #1-1  WARN transport.AbstractServer:  [DUBBO] All clients has discontected from /192.168.37.1:20880. You can graceful shutdown now., dubbo version: 2.4.10, current host: 127.0.0.1
-[30/11/15 12:28:02:002 CST] DubboServerHandler-192.168.37.1:20880-thread-3  INFO dubbo.DubboProtocol:  [DUBBO] disconected from /192.168.37.1:54765,url:dubbo://192.168.37.1:20880/com.jianzhi.demo.CustomerService?anyhost=true&application=serve-provider&channel.readonly.sent=true&codec=dubbo&dubbo=2.4.10&heartbeat=60000&interface=com.jianzhi.demo.CustomerService&loadbalance=roundrobin&methods=getCustomerById&owner=william&pid=1325&side=provider&timestamp=1448814280809, dubbo version: 2.4.10, current host: 127.0.0.1
-````
-
-Continued...
+这就是我们想要的结果。
