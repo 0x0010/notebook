@@ -12,7 +12,38 @@ DUBBO是一个分布式服务框架，致力于提供高性能和透明化的RPC
 
 ## Dubbo的集成与测试
 ###搭建Zookeeper（服务注册中心）
+下载安装包zookeeper-3.4.6, 解压之后，拷贝一个zoo.cfg到conf目录，其他的暂时不修改，保留默认的2181端口。我虚拟的Linux机器的IP是192.168.37.128，所以Zookeeper服务的地址是zookeeper://192.168.37.128:2181
 ###部署两个服务进程（Service-Provider-Instance）
+Provider包里的服务描述文件 serve-provider.xml
+````
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <bean id="customerService" class="com.jianzhi.demo.provider.CustomerServiceImpl" />
+    <dubbo:service interface="com.jianzhi.demo.CustomerService" ref="customerService" />
+</beans>
+````
+网上很多教程是把服务暴露的配置卸载包的描述文件，我觉得这样不是很合理。包里不应该包含部署的信息。所以关于服务注册的信息，放在dubbo.properties文件中。
+````
+dubbo.container=log4j,spring
+dubbo.application.name=serve-provider
+dubbo.application.owner=william
+#dubbo.registry.address=multicast://224.5.6.7:1234
+dubbo.registry.address=zookeeper://192.168.37.128:2181
+#dubbo.registry.address=redis://127.0.0.1:6379
+#dubbo.registry.address=dubbo://127.0.0.1:9090
+#dubbo.monitor.protocol=registry
+dubbo.protocol.name=dubbo
+dubbo.protocol.port=20880
+dubbo.service.loadbalance=roundrobin
+#dubbo.log4j.file=logs/dubbo-demo-consumer.log
+#dubbo.log4j.level=WARN
+````
+
+
+
 ###清理Service Consumer中本地化的服务实现
 ###调用测试
 
