@@ -16,6 +16,8 @@
 >
 >对于第二种情况，可以在原有hash基础上再次做一次hash，通过二次hash来重建均衡性。ConcurrentHashMap中选择segment就采用了二次hash。
 
+### SpyMemcached均衡性测试
+
 先看一下SpyMemcached里key的均衡性表现的测试，下边是完整的测试代码：
 ````java
 import org.apache.commons.lang3.RandomStringUtils;
