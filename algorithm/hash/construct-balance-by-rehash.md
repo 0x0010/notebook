@@ -14,7 +14,8 @@
 >
 >对于第一种情况属于hash算法问题，hash算法有一个特性是均衡性。均衡性都无法保证的hash算法是不合格的。
 >
->对于第二种情况，可以在原有hash基础上再次做一次hash，通过二次hash来重建均衡性。ConcurrentHashMap中选择segment就采用了二次hash。
+> **对于第二种情况，可以在原有hash基础上再次做一次hash，通过二次hash来重建均衡性。ConcurrentHashMap中选择segment就采用了二次hash。**
+> 脑袋热了，突然想到这个rehash的做法，后来想想觉得非常不妥（打脸）。对于这种key的热度分布不均匀的情况如何解决呢？ 下边会给出我的想法。
 
 ### SpyMemcached均衡性测试
 
