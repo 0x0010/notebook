@@ -133,7 +133,7 @@ public class RehashTest {
         Map<Long, String> mappingMap = new HashMap<>();
 
         // 构造虚拟节点，repetition表示节点的复用数，测试发现，repetition越大，均衡性越好。
-        int repetition = 4;
+        int repetition = 256;
         for (String nodeKey : nodeKeys) {
             actualNodeMap.put(nodeKey, 0L);
             // 虚拟节点数量
@@ -145,14 +145,19 @@ public class RehashTest {
             }
         }
 
-        Long requestCount = 1000000L;
+        Long requestCount = 1000000L; // 模拟请求次数
+
+        // 模拟虚拟节点的命中
         for (long i = 0L; i < requestCount; i++) {
             getNodeForKey(hash(RandomStringUtils.random(32)), virtualNodeMap);
         }
+
+        // 汇总虚拟节点的命中数
         for (Map.Entry<Long, Long> entry : virtualNodeMap.entrySet()) {
             actualNodeMap.put(mappingMap.get(entry.getKey()), actualNodeMap.get(mappingMap.get(entry.getKey())) + entry.getValue());
         }
 
+        //统计物理节点的命中数，以及计算命中百分比
         for (Map.Entry<String, Long> entry : actualNodeMap.entrySet()) {
             System.out.println(entry.getKey() + "-" + (entry.getValue() * 100.0 / requestCount) + "-" + entry.getValue());
         }
