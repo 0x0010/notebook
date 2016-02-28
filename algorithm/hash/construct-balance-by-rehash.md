@@ -130,17 +130,19 @@ public class RehashTest {
         TreeMap<Long, Long> virtualNodeMap = new TreeMap<>();
         Map<Long, String> mappingMap = new HashMap<>();
 
-
+        // 构造虚拟节点，repetition表示节点的复用数，测试发现，repetition越大，均衡性越好。
+        int repetition = 4;
         for (String nodeKey : nodeKeys) {
             actualNodeMap.put(nodeKey, 0L);
             // 虚拟节点数量
-            for (int i = 0; i < 4; i++) { //非常重要
+            for (int i = 0; i < repetition; i++) { //非常重要
                 for (Long hashedKey : ketamaNodePositionsAtIteration(nodeKey, i)) {
                     virtualNodeMap.put(hashedKey, 0L);
                     mappingMap.put(hashedKey, nodeKey);
                 }
             }
         }
+
         Long requestCount = 1000000L;
         for (long i = 0L; i < requestCount; i++) {
             getNodeForKey(hash(RandomStringUtils.random(32)), virtualNodeMap);
@@ -162,4 +164,33 @@ public class RehashTest {
 192.168.199.200:18000-16.5573-165573
 192.168.199.202:18000-19.5754-195754
 192.168.199.204:18000-21.4226-214226
+````
+从测试的结果来看，均衡性不是非常理想。
+
+### 修改物理节点的repetition实现理想的均衡效果。
+
+测试代码中构造虚拟节点处有一个变量repetition，这个变量代表实际节点的复用数。也就是说，如果repetition=4（spymemcached包里的默认值），那么在hash环中，每个实际节点对应4*4个虚拟节点，命中其中任何一个虚拟节点就等同于命中实际节点。
+
+现在将repetition调大，看看命中的均衡性如何？ 我将repetition调整到256，也就是意味着环中每个实际节点有256*4个虚拟节点。
+````java
+    // 构造虚拟节点，repetition表示节点的复用数，测试发现，repetition越大，均衡性越好。
+    int repetition = 256;
+    for (String nodeKey : nodeKeys) {
+        actualNodeMap.put(nodeKey, 0L);
+        // 虚拟节点数量
+        for (int i = 0; i < repetition; i++) { //非常重要
+            for (Long hashedKey : ketamaNodePositionsAtIteration(nodeKey, i)) {
+                virtualNodeMap.put(hashedKey, 0L);
+                mappingMap.put(hashedKey, nodeKey);
+            }
+        }
+    }
+````
+测试结果如下：
+````
+192.168.199.203:18000-19.4207-194207
+192.168.199.201:18000-20.7831-207831
+192.168.199.200:18000-19.7188-197188
+192.168.199.202:18000-19.6237-196237
+192.168.199.204:18000-20.4537-204537
 ````
