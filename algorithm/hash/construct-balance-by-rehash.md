@@ -96,6 +96,12 @@ public class RehashTest {
         return rv & 0xffffffffL; /* Truncate to 32-bits */
     }
 
+    /**
+     * 为了方便测试，对源码包里的方法进行部分修改，主体逻辑未做改变。
+     *
+     * @param hash    key的hash值
+     * @param nodeMap 虚拟节点集合
+     */
     static void getNodeForKey(long hash, TreeMap<Long, Long> nodeMap) {
         //final MemcachedNode rv;
         if (!nodeMap.containsKey(hash)) {
@@ -108,6 +114,7 @@ public class RehashTest {
                 hash = tailMap.firstKey();
             }
         }
+        // 对命中的虚拟节点+1
         nodeMap.put(hash, nodeMap.get(hash) + 1);
     }
 
@@ -117,12 +124,17 @@ public class RehashTest {
         String[] nodeKeys = {"192.168.199.200:18000", "192.168.199.201:18000", "192.168.199.202:18000", "192.168.199.203:18000", "192.168.199.204:18000"};
 //        String[] nodeKeys = { "192.168.199.203:18000", "192.168.199.204:18000"};
 
+        //为了方便统计，构造三个Map，分别存储实际节点，虚拟节点和虚拟节点与实际节点的映射
+        // 命中的计数在虚拟节点上，统计需要统计实际节点的命中数，实际节点又会被分成多个虚拟节点
         Map<String, Long> actualNodeMap = new HashMap<>(3);
         TreeMap<Long, Long> virtualNodeMap = new TreeMap<>();
         Map<Long, String> mappingMap = new HashMap<>();
+
+
         for (String nodeKey : nodeKeys) {
             actualNodeMap.put(nodeKey, 0L);
-            for (int i = 0; i < 4; i++) {
+            // 虚拟节点数量
+            for (int i = 0; i < 4; i++) { //非常重要
                 for (Long hashedKey : ketamaNodePositionsAtIteration(nodeKey, i)) {
                     virtualNodeMap.put(hashedKey, 0L);
                     mappingMap.put(hashedKey, nodeKey);
