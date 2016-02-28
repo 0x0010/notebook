@@ -1,0 +1,1 @@
+Construct balance by rehash
