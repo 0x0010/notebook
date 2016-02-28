@@ -13,7 +13,7 @@
 
 ### 算法实现
 
-````
+````java
 	int[] unsortedArray = {10, 1, 5, 8, 49, 34, 100, 4, 1, 0, 90, 9, 80, 5};
 	
     int[] straightInsertionSort(final int[] array) {
