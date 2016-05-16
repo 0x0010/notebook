@@ -50,6 +50,6 @@ nginx服务的server配置中提供了server_name选项，可以用它来指定�
 以上代码是配置了三个Server同时监听同一个端口80。当Nginx接收到请求时会优先匹配完全一致的server_name。如果匹配不到，会转向通配的server。
 
 举个例子：
-* 1. http_host是test.iamdigger.org/in/something， 则会匹配test.iamdigger.org的Server。
-* 2. http_host是test.0x0010.org/in/something，则会匹配test.0x0010.org的Server。
-* 3. 其他的任何情况只能匹配server_name是_的Server。
+* http_host是test.iamdigger.org/in/something， 则会匹配test.iamdigger.org的Server。
+* http_host是test.0x0010.org/in/something，则会匹配test.0x0010.org的Server。
+* 其他的任何情况只能匹配server_name是_的Server。
