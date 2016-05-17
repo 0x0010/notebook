@@ -3,6 +3,7 @@
 HttpClient是遵循Http协议，使用Java语言开发的Http请求客户端。其API比Java原生的HttpConnection更友好，研发使用起来也更方便。这段文字记录自己如何使用httpclient-4连接池。
 
 本文代码依赖清单如下：
+
 * org.apache.httpcomponents:httpclient:4.5.2
 * org.apache.httpcomponents:httpcore:4.4.4
 * commons-logging:commons-logging:1.2
