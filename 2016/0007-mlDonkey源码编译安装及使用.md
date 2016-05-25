@@ -54,6 +54,8 @@ lrwxrwxrwx. 1 root root    5 May 25 09:41 mlslsk -> mlnet
 * **s &lt;keywords&gt;** 搜索， 这个指令相当强大，可以搜到很多东西，赶快去试试。^_^
 * **vr** 这个命令是结合_s_命令使用，可以查看最后一次搜索结果。
 * **d &lt;num&gt;** 这个命令结合上两个命令使用。 _vr_可以看到搜索结果的编号，使用d命令可以直接下载搜索出来的内容。
+* **kill** 关闭当前mldonkey进程
+* **q** 退出telnet
 
 这些是比较常用的指令，另外还有一些辅助的命令，比如将临时文件移动到incoming目录的commit命令，我没有把这个命令列到常用命令里，是因为现在mldonkey默认是开启自动commit，也就是说文件下载完成之后会自动移动到incoming目录。
 
