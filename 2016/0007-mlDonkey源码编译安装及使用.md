@@ -26,7 +26,9 @@ lrwxrwxrwx. 1 root root    5 May 25 09:41 mlgnut -> mlnet
 -rwxr-xr-x. 1 root root 8.4M May 25 09:41 mlnet
 lrwxrwxrwx. 1 root root    5 May 25 09:41 mlslsk -> mlnet
 ````
-至此，我们编译安装就结束了。接下来将会介绍如何使用这个工具进行下载。
+使用命令<code>mldonkey > /dev/null 2>&1 &</code>来启动mlDonkey，并让其以Daemon方式运行。
+
+至此，我们编译安装以及运行就结束了。接下来将会介绍如何使用这个工具进行下载。
 
 ### mlDonkey的使用
 官网也对如何使用做了介绍。具体可以参考[mlDonkey命令](http://mldonkey.sourceforge.net/MLdonkeyCommandsExplained)。关于操作方面，官方提供了三种方式：GUI，WebUI和Telnet。
@@ -42,4 +44,8 @@ lrwxrwxrwx. 1 root root    5 May 25 09:41 mlslsk -> mlnet
 在telnet控制台中使用以下几个常用命令。
 
 * **dllink** 下载命令。以下载一个windows操作系统镜像为例，在命令行输入 *dllink ed2k://|file|en_windows_7/ignore-somthing* 
-*  123
+* **vd** 查看当前正在下载
+* **cancel/pause/resume <num>** 这是一组针对正在下载的命令。使用*vd*命令可以看到正在下载项的编号，使用这个编号结合这组命令可以实现取消、暂停和恢复。在使用这些命令时会有二次确认的提示，<code>confirm yes</code>进行确认。
+* **s <keywords>** 搜索， 这个指令相当强大，可以搜到很多东西，赶快去试试。^_^
+* **vr** 这个命令是结合*s*命令使用，可以查看最后一次搜索结果。
+* **d <num>** 这个命令结合上两个命令使用。 *vr*可以看到搜索结果的编号，使用d命令可以直接下载搜索出来的内容。
