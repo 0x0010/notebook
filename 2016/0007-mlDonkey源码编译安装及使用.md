@@ -1,6 +1,6 @@
 网络上的文章包括官方的文档里都没有对mlDonkey的快速安装及使用进行详细描述，或许是我自己没看仔细。我这里会尽量详细地描述整个安装过程和如何快速上手使用。本文使用的Linux发行版本是CentOS 6.7，不同发行版本的差异应该不大。如果按照此教程还无法安装使用mlDonkey，可以在文章评论里描述你遇到的问题，我们一起讨论。
 
-mlDonkey官方网址：http://mldonkey.sourceforge.net/Main_Page，我使用的版本是2014年3月份发布的3.1.5版。点击下载mlDonkey-3.1.5 https://sourceforge.net/projects/mldonkey/files/mldonkey/3.1.5/mldonkey-3.1.5.tar.bz2/download
+[mlDonkey官方网址](http://mldonkey.sourceforge.net/Main_Page)，我使用的版本是2014年3月份发布的3.1.5版。[点击下载mlDonkey-3.1.5]( https://sourceforge.net/projects/mldonkey/files/mldonkey/3.1.5/mldonkey-3.1.5.tar.bz2/download)
 
 ### 编译环境准备
 下载的package是tar.bz2的压缩格式。解压这种格式的压缩包依赖bzip2，可以通过<code>yum install bzip2</code>安装bzip2。
