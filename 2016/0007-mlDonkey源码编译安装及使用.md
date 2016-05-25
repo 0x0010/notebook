@@ -33,9 +33,9 @@ lrwxrwxrwx. 1 root root    5 May 25 09:41 mlslsk -> mlnet
 ### mlDonkey的使用
 官网也对如何使用做了介绍。具体可以参考[mlDonkey命令](http://mldonkey.sourceforge.net/MLdonkeyCommandsExplained)。关于操作方面，官方提供了三种方式：GUI，WebUI和Telnet。
 
-* GUI。如果是Desktop UI支持的系统，可以关注这部分。
-* WebUI。mldonkey提供了Http web服务，对没安装Desktop的系统可以关注和使用这个功能。
-* Telnet。如果以上两种你都不喜欢，那么对于命令行，请不要再拒绝了。
+* **GUI** 如果是Desktop UI支持的系统，可以关注这部分。
+* **WebUI** mldonkey提供了Http web服务，对没安装Desktop的系统可以关注和使用这个功能。
+* **Telnet** 如果以上两种你都不喜欢，那么对于命令行，请不要再拒绝了。
 
 这次主要针对Telnet的方式进行描述几个常用的命令。
 
