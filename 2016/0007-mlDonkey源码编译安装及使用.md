@@ -38,3 +38,8 @@ lrwxrwxrwx. 1 root root    5 May 25 09:41 mlslsk -> mlnet
 这次主要针对Telnet的方式进行描述几个常用的命令。
 
 使用命令<code>telnet 127.0.0.1 4000</code> 连接mldonkey的telnet服务。先解释这个4000端口的出处。启动dlmonkey之后，在当前用户根目录下会生成一个.mldonkey目录，这个目录是主要的工作目录，里边保存了配置文件以及下载的文件。该目录下有个名为downloads.ini的文件，该文件里有关于telnet端口的配置。除此之外还有其他一些关键配置你可能会比较关心，比如ip白名单列表（allowed ips), http服务的端口， gui的端口等等。
+
+在telnet控制台中使用以下几个常用命令。
+
+* **dllink** 下载命令。以下载一个windows操作系统镜像为例，在命令行输入 *ed2k://|file|en_windows_7_ultimate_with_sp1_x64_dvd_u_677332.iso|3320903680|743598C64E635C72964CF02A3E0AD547|/* 
+*  123
