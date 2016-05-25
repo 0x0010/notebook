@@ -41,5 +41,5 @@ lrwxrwxrwx. 1 root root    5 May 25 09:41 mlslsk -> mlnet
 
 在telnet控制台中使用以下几个常用命令。
 
-* **dllink** 下载命令。以下载一个windows操作系统镜像为例，在命令行输入 *ed2k://|file|en_windows_7_ultimate_with_sp1_x64_dvd_u_677332.iso|3320903680|743598C64E635C72964CF02A3E0AD547|/* 
+* **dllink** 下载命令。以下载一个windows操作系统镜像为例，在命令行输入 * dllink ed2k://|file|en_windows_7/ignore-somthing * 
 *  123
