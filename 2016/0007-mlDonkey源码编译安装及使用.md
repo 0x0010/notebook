@@ -4,10 +4,16 @@
 
 ### 编译环境准备
 下载的package是tar.bz2的压缩格式。解压这种格式的压缩包依赖bzip2，可以通过<code>yum install bzip2</code>安装bzip2。
+
 进入刚才下载的源码包目录下，使用<code>tar -xvjf mldonkey-3.1.5</code>将源码释放到当前</code>./mldonkey-3.1.5</code>。
+
 <code>cd mldonkey-3.1.5</code>进入源码目录。使用命令<code>./configure</code>进行编译环境检查。根据提示安装缺少的包，在我的安装过程中没有非常特殊并且难处理的依赖。
+
 唯一需要特别说明的是，当检查OCaml编译器的时候不要敲y继续，这个时候要断下来，手动安装更高版本的编译器。
-使用<code>yum install ocaml-camlp4-devel</code>安装ocaml-camlp4-devel，这个是踩过坑得出的结论，同时yum会安装两个依赖：ocaml和rpm-build。安装好之后再次使用<code>./configure</code>命令，不出意外，我们可以看到configure成功之后的提示Configuring MLDonkey 3.1.5 completed.
+使用<code>yum install ocaml-camlp4-devel</code>安装ocaml-camlp4-devel，这个是踩过坑得出的结论，同时yum会安装两个依赖：ocaml和rpm-build。
+
+安装好之后再次使用<code>./configure</code>命令，不出意外，我们可以看到configure成功之后的提示Configuring MLDonkey 3.1.5 completed.
+
 ### 编译安装
 编译安装比较简单，使用<code>make</code>命令编译，使用<code>make install</code>命令安装。默认情况，二进制文件会放在/usr/local/bin目录。
 ````
