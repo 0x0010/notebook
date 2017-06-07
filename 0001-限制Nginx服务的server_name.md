@@ -1,7 +1,6 @@
 ---
-title: First Article Testing
-date: 2017/6/6 23:11:00
-id: 20170001
+title: 限制Nginx服务的server_name
+date: 2015/10/6 15:11:28
 ---
 
 在写个人网站时碰到这么一个问题。
