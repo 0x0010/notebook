@@ -1,5 +1,13 @@
+---
+title: First Article Testing
+date: 2017/6/6 23:11:00
+id: 20170001
+---
+
 在写个人网站时碰到这么一个问题。
 比如，我有两个域名0x0010.com和iamdigger.com。在测试阶段我只想让test.0x0010.com和test.iamdigger.com两个二级域名可以正常访问服务，其他的所有域名都指向无意义的静态目录。
+
+<!-- more -->
 
 nginx服务的server配置中提供了server_name选项，可以用它来指定域名。
 ````shell
