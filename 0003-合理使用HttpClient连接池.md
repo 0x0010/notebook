@@ -1,4 +1,7 @@
-### HttpClient连接池的正确使用姿势
+---
+title: 合理使用HttpClient连接池
+date: 2016/5/1 22:45:19
+---
 
 HttpClient是遵循Http协议，使用Java语言开发的Http请求客户端。其API比Java原生的HttpConnection更友好，研发使用起来也更方便。这段文字记录自己如何使用httpclient-4连接池。
 
