@@ -1,5 +1,5 @@
 ---
-title: 限制Nginx服务的server_name
+title: Nginx多域名配置
 date: 2015/10/6 15:11:28
 ---
 
