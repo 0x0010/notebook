@@ -26,7 +26,7 @@ datasource.statementCacheSize=500
 
   使用1和0作为开关值并不少见，并且转换成数字在内存中比较的效率也不低。
 
-最终选择第一种true/false的方案，选择依据其实很简单，觉得1/0与*enableStatementCache*参数名有点违和，true/false显得人性化，说明我们的产品是有生命，有温度的。
+最终选择第一种true/false的方案，选择依据其实很简单，觉得1/0与*enableStatementCache*参数名有点违和，而true/false显得更人性化，进一步说明我们的产品是有生命，有温度的。
 
 接下来，我们需要做的事情是判断*enableStatementCache*的值是true还是false。实现这个判断的做法很多，市面上两种常用的做法是字符串比较和转换成布尔值再比较。
 
