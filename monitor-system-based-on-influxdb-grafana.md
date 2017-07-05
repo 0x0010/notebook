@@ -23,6 +23,10 @@ date: 2017/7/5 9:39
 
 监控，包含“监”和“控”。这篇文章的主题聚焦在“监”字上，我们实现一个具备完整监控功能的Demo，包括CPU，网络，API请求次数以及API被请求的速率。
 
+先看看最终的监控图表截图
+
+![](https://ws3.sinaimg.cn/large/006tNc79gy1fh9de00y9bj31kw0jy0yp.jpg)
+
 ### 技术选型
 
 说了这么多，是时候切入主题了。
@@ -215,4 +219,63 @@ public ServletRegistrationBean monitorServlet() {
   return new ServletRegistrationBean(new MonitorServlet(), "/monitor/*");
 }
 ````
+
+- 首页访问次数及TPS指标接口
+
+  Path：/monitor/IdxTps
+
+  接口返回值：{"idxCount":0,"idx15mRate":0.0,"idxMeanRate":0.0,"idx1mRate":0.0,"idx5mRate":0.0}
+
+- JVM内存信息
+
+  Path：/monitor/MemInfo
+
+  接口返回值：{"heapMaxSize":3817865216,"heapSize":333971456}
+
+
+
+
+### API Demo指标采集器配置
+
+在telegraf.conf文件中继续追加input插件
+
+````shell
+[[inputs.httpjson]]
+    name_override="index_tps"
+    servers = [
+       "http://127.0.0.1:8090/monitor/IdxTps"
+    ]
+    response_timeout="5s"
+    method="GET"
+
+[[inputs.httpjson]]
+    name_override="jvm_memory"
+    servers = [
+       "http://127.0.0.1:8090/monitor/MemInfo"
+    ]
+    response_timeout="5s"
+    method="GET"
+````
+
+我们使用influxdb的httpjson插件采集Demo暴露的两个指标接口。
+
+
+
+### 配置应用指标展示
+
+现在应用指标有三个：首页访问次数，首页地址TPS和Jvm内存信息。首页的访问次数我们可以配置成数字的形式展示，另外两个指标继续配置成曲线图表。
+
+配置过程与cpu和网络的非常类似，最终的效果图如下
+
+![](https://ws2.sinaimg.cn/large/006tNc79gy1fh9dgzg3i3j31kw08ujtu.jpg)
+
+在配置首页请求次数时，Options的stat要选择Current，否则默认的AVG会造成图表数据不准。
+
+![](https://ws2.sinaimg.cn/large/006tNc79gy1fh9diky9hsj31300h6acc.jpg)
+
+
+
+至此，基于influxdb,telegraf和grafana的监控系统就开发完成了。
+
+过程很简单，基本没有什么阻碍，当然还有更多的监控功能等待我们去发掘和学习。
 
