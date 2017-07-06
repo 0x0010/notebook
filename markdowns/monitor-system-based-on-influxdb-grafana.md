@@ -220,17 +220,10 @@ public ServletRegistrationBean monitorServlet() {
 }
 ````
 
-- 首页访问次数及TPS指标接口
+- 首页访问次数及TPS指标接口 Path：/monitor/IdxTps
 
-  Path：/monitor/IdxTps
+- JVM内存信息 Path：/monitor/MemInfo
 
-  接口返回值：{"idxCount":0,"idx15mRate":0.0,"idxMeanRate":0.0,"idx1mRate":0.0,"idx5mRate":0.0}
-
-- JVM内存信息
-
-  Path：/monitor/MemInfo
-
-  接口返回值：{"heapMaxSize":3817865216,"heapSize":333971456}
 
 
 
