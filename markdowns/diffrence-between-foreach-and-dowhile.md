@@ -1,6 +1,6 @@
 ---
 title: 从Smali代码的角度看foreach和dowhile的区别
-date: 2017/7/5 9:39
+date: 2017/8/16 14:09
 ---
 
 最近被问到一个问题：foreach和dowhile的区别（编译之后）。刚拿到这个问题时，一时真不知道怎么作答。不过他们的用法和共同点对于程序员来说都不陌生。那么jdk是如何编译foreach代码的呢？我们准备将Java代码编译成[smali]("https://github.com/JesusFreke/smali")代码来一探究竟。
