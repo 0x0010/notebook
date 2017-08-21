@@ -21,3 +21,14 @@ public static void sort(Object[] a) {
 
 ### 算法分析
 mergeSort代码很少，理解起来并不难。主要使用的是二分插入排序，使用递归将长度大于等于7的数组分成前后两端，直至分成的短数组长度小于7之后，对短数组使用插入排序，最后再将排序后的前后两段合并成一个有序数组。
+
+当数组长度小于7时，使用插入排序算法
+````java
+if (length < INSERTIONSORT_THRESHOLD) {
+    for (int i=low; i<high; i++)
+        for (int j=i; j>low &&
+                 ((Comparable) dest[j-1]).compareTo(dest[j])>0; j--)
+            swap(dest, j, j-1);
+    return;
+}
+````
