@@ -17,4 +17,7 @@ public static void sort(Object[] a) {
         ComparableTimSort.sort(a);
 }
 ````
-`LegacyMergeSort.userRequested`是一个
+`LegacyMergeSort.userRequested`是一个布尔类型的常量，可以通过系统参数`-Djava.util.Arrays.useLegacyMergeSort=true`指定。
+
+### 算法分析
+mergeSort代码很少，理解起来并不难。主要使用的是二分插入排序，使用递归将长度大于等于7的数组分成前后两端，直至分成的短数组长度小于7之后，对短数组使用插入排序，最后再将排序后的前后两段合并成一个有序数组。
