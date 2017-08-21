@@ -32,3 +32,10 @@ if (length < INSERTIONSORT_THRESHOLD) {
     return;
 }
 ````
+
+插入排序算法的过程总结为：遍历数组，当前下标的元素比前一个元素小，则交换这两个元素。继续往前遍历，并重复这个比较的过程，直到前一个元素比后一个元素小终止。
+
+已数组 [10, 4, 11, 90, 3, 8] 为例，下图描述了整个插入排序的过程：
+
+![插入排序示例](https://github.com/0x0010/notebook/raw/master/resources/Arrays-sort-legacy-merge-sort.png)
+
