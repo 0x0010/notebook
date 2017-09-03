@@ -1,5 +1,5 @@
 ### 前言
-ConcurrentBag是光连接池自己实现的并发池，不仅限于管理数据库连接对象，也通过扩展 `IBagStateListener` 可以实现其他类型对象的池化管理，类似commons-pool的GenericObjectPool。关于如何池化自定义对象，阅读这篇文章的同学可以自己先去考虑，后期我会考虑写一点关于这个主题的文章，而这篇文章的重点主要是分析ConcurrentBag的性能。
+ConcurrentBag是光连接池自己实现的并发池，不仅限于管理数据库连接对象，也可以通过扩展 `IBagStateListener` 实现其他类型对象的池化管理，类似commons-pool的GenericObjectPool。关于如何池化自定义对象，阅读这篇文章的同学可以自己先去考虑，后期我会考虑写一点关于这个主题的文章，而这篇文章的重点主要是分析ConcurrentBag的性能。
 
 ### 如何实现连接池
 分析ConcurrentBag之前，我们先思考一下，如果让我们写一个连接池，怎么去实现呢？
