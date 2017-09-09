@@ -4,7 +4,10 @@
 - 连接池在使用和不使用ThreadLocal的情况下，性能有多大差别
 - 使用ThreadLocal的情况下，性能与并发数的变化曲线
 
-测试场景准备：使用Springboot搭建一个单表查询接口。并发场景使用JMeter模拟。
+测试场景准备：
+- 使用Springboot搭建一个单表查询接口。并发场景使用JMeter模拟。
+- Oracle HotSpot 1.8.0-144
+- 堆最大内存1024M
 
 ### 使用ThreadLocal时的性能曲线
 这个场景无需对源码做任何修改，直接使用App测试即可。测试是否使用ThreadLocal的场景连接池最大连接数设置为30。
